@@ -1,0 +1,16 @@
+<!--<head>-->
+  <!--<title>distUR.net</title>-->
+<!--</head>-->
+
+<!--<body>-->
+  <!--<h1>Welcome to Meteor!</h1>-->
+  <!--{{> loginButtons}}<br/>-->
+  <!--<button class="c-gh">Connect Github</button>-->
+  <!--<button class="c-db">Connect Dropbox</button>-->
+  <!--{{> hello}}-->
+<!--</body>-->
+
+<!--<template name="hello">-->
+  <!--<button>Click Me</button>-->
+  <!--<p>You've pressed the button {{counter}} times.</p>-->
+<!--</template>-->
