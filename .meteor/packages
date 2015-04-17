@@ -7,3 +7,7 @@
 meteor-platform
 autopublish
 insecure
+accounts-ui
+accounts-github
+gcampax:accounts-dropbox
+mondora:connect-with
