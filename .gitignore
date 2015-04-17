@@ -1,2 +1,6 @@
 # IDE
 .idea
+
+# Meteor
+.meteor/local
+.meteor/meteorite
