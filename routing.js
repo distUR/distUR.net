@@ -7,24 +7,24 @@ distUR.DashboardRoutes = [
         nav: true
     },
     {
-        path: "/test",
-        template: "test",
-        icon: "fa fa-fw fa-file",
-        title: "Test",
+        path: "/accounts",
+        template: "accounts",
+        icon: "fa fa-fw fa-user-plus",
+        title: "Accounts",
         nav: true,
         items: [
             {
-                path: "/test/test01",
-                template: "test01",
-                icon: "fa fa-fw fa-table",
-                title: "Test 01",
+                path: "/accounts/github",
+                template: "github",
+                icon: "fa fa-fw fa-github",
+                title: "Github",
                 nav: true
             },
             {
-                path: "/test/test02",
-                template: "test02",
-                icon: "fa fa-fw fa-bar-chart-o",
-                title: "Test 02",
+                path: "/accounts/dropbox",
+                template: "dropbox",
+                icon: "fa fa-fw fa-dropbox",
+                title: "Dropbox",
                 nav: true
             }
         ]

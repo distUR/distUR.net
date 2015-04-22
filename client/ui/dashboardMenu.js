@@ -2,12 +2,12 @@ Template.dashboardMenu.helpers({
     routes: function() {
         return distUR.DashboardRoutes;
     },
-    activeClass: function(route) {
+    activeClass: function() {
         var cr = Router.current();
         var url = cr.url;
-        if (url.startsWith("http://") || url.startsWith("https://")) {
+        if (!url.startsWith("/")) {
             url = "/";
         }
-        return url === route.path ? "active" : "";
+        return url === this.path ? "active" : "";
     }
 });

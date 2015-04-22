@@ -2,7 +2,6 @@ accounts-base@1.2.0
 accounts-github@1.0.4
 accounts-oauth@1.1.5
 anti:i18n@0.4.3
-autopublish@1.0.3
 autoupdate@1.2.1
 base64@1.0.3
 binary-heap@1.0.3
@@ -14,6 +13,7 @@ check@1.0.5
 ddp@1.1.0
 deps@1.0.7
 ejson@1.0.6
+erasaur:meteor-lodash@3.7.0
 fastclick@1.0.3
 fortawesome:fontawesome@4.3.0
 gcampax:accounts-dropbox@1.0.0
@@ -25,7 +25,6 @@ htmljs@1.0.4
 http@1.1.0
 ian:accounts-ui-bootstrap-3@1.2.48
 id-map@1.0.3
-insecure@1.0.3
 iron:controller@1.0.7
 iron:core@1.0.7
 iron:dynamic-template@1.0.7
