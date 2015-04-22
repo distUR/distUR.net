@@ -7,8 +7,10 @@
 meteor-platform
 autopublish
 insecure
-accounts-ui
 accounts-github
 gcampax:accounts-dropbox
 mondora:connect-with
 iron:router
+twbs:bootstrap
+fortawesome:fontawesome
+ian:accounts-ui-bootstrap-3

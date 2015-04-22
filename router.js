@@ -1,5 +1,5 @@
 Router.configure({
-    layoutTemplate: "mainLayout"
+    layoutTemplate: "dashboard"
 });
 
 Router.route("/", function() {
