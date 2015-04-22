@@ -14,3 +14,5 @@ iron:router
 twbs:bootstrap
 fortawesome:fontawesome
 ian:accounts-ui-bootstrap-3
+mquandalle:harmony
+raix:handlebar-helpers

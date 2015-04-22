@@ -1,0 +1,24 @@
+<template name="dashboardMenu">
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+            {{#each $mapped routes}}
+                {{#if nav}}
+                    <li class="{{activeClass this}}">
+                        <a href="{{path}}"><i class="{{icon}}"></i> {{title}}</a>
+                        {{#if getLength items}}
+                            <ul>
+                                {{#each $mapped items}}
+                                    {{#if nav}}
+                                        <li>
+                                            <a href="{{path}}" data-toggle="collapse" data-target="#s{{$index}}"><i class="{{icon}}"></i> {{title}}</a>
+                                        </li>
+                                    {{/if}}
+                                {{/each}}
+                            </ul>
+                        {{/if}}
+                    </li>
+                {{/if}}
+            {{/each}}
+        </ul>
+    </div>
+</template>
