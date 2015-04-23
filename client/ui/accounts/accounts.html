@@ -1,4 +1,7 @@
 <template name="accounts">
+    {{#unless $.Meteor.userId}}
+        <div class="alert alert-danger">Your are not logged in!</div>
+    {{/unless}}
     <div class="row">
         <div class="col-lg-6">
             {{> accountStatus id="github" }}

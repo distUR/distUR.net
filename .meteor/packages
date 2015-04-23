@@ -15,3 +15,6 @@ ian:accounts-ui-bootstrap-3
 mquandalle:harmony
 raix:handlebar-helpers
 erasaur:meteor-lodash
+reactive-var
+mvrx:bluebird
+less

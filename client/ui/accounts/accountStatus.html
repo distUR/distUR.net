@@ -1,6 +1,63 @@
 <template name="accountStatus">
-    <div class="panel panel-info">
-        <div class="panel-heading"><i class="fa fa-fw fa-github"></i> Github Account Status</div>
-        <div class="panel-body">Bubu</div>
+    <div class="panel panel-{{class}} accountStatus">
+        <div class="panel-heading"><i class="fa fa-fw {{icon}}"></i> {{title}} Account Status</div>
+        <div class="panel-body">
+            {{#if loading}}
+                Loading status ...
+            {{else}}
+                {{#if accountData }}
+                    <div class="alert alert-success">
+                        <i class="fa fa-fw fa-check-square-o"></i> Connected
+                    </div>
+                    <table class="table">
+                        <tbody>
+                        {{#if accountData.username}}
+                            <tr>
+                                <th>User name:</th>
+                                <td>{{accountData.username}}</td>
+                            </tr>
+                        {{/if}}
+                        {{#if accountData.display_name}}
+                            <tr>
+                                <th>Display name:</th>
+                                <td>{{accountData.display_name}}</td>
+                            </tr>
+                        {{/if}}
+                        {{#if accountData.email}}
+                            <tr>
+                                <th>Email:</th>
+                                <td>{{accountData.email}}</td>
+                            </tr>
+                        {{/if}}
+                        {{#if link}}
+                            <tr>
+                                <th>Profile:</th>
+                                <td>
+                                    <a target="_blank" href="{{link}}">{{link}}</a>
+                                </td>
+                            </tr>
+                        {{/if}}
+                        </tbody>
+                    </table>
+                {{else}}
+                    {{#if $.Meteor.userId}}
+                        <div class="alert alert-warning">
+                            <i class="fa fa-fw fa-square-o"></i> Not connected
+                        </div>
+                        <div>
+                            You can connect your
+                            <button type="button" class="connect btn btn-sm btn-success"><i
+                                    class="fa fa-fw {{icon}}"></i> {{title}}</button>
+                            account there.
+                        </div>
+                    {{else}}
+                        You can sign in with your
+                        <button type="button" class="sign-in btn btn-sm btn-primary"><i
+                                class="fa fa-fw {{icon}}"></i> {{title}}</button>
+                        account there.
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </div>
     </div>
 </template>

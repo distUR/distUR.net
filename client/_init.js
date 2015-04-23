@@ -9,3 +9,5 @@ Meteor.connectWith = function (service, options, callback) {
     var Service = typeof service === "string" ? Package[service][makePascalCased(service)] : service;
     Service.requestCredential(options, connectCredentialRequestCompleteCallback);
 };
+
+distUR.call = Promise.promisify(Meteor.call, Meteor);
