@@ -24,10 +24,10 @@ Template.accountStatus.helpers({
     },
     quotaInfo: function () {
         var ad = Template.instance().accountData.get();
-        if (ad && ad.accountInfo && ad.accountInfo.quota_info) {
+        if (ad && ad.accountInfo) {
             return {
-                freeMB: toMB(ad.accountInfo.quota_info.quota - ad.accountInfo.quota_info.normal),
-                availableMB: toMB(ad.accountInfo.quota_info.quota)
+                freeMB: toMB(ad.accountInfo.quota - ad.accountInfo.usedQuota),
+                availableMB: toMB(ad.accountInfo.quota)
             };
         }
     },
@@ -85,7 +85,6 @@ Template.accountStatus.onCreated(function () {
     self.connectedProvidersCount = new ReactiveVar(null);
 
     // Static dependency, all status boxes needs to change.
-    // TODO: Move it somewhere else (distur.deps?)
     self.connectDep = (Template.accountStatus.connectDep || (Template.accountStatus.connectDep = new Tracker.Dependency()));
 
     self.autorun(function () {
