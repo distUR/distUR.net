@@ -1,6 +1,6 @@
 "use strict";
 
-/* global Template,_,Router,distUR,ReactiveVar */
+/* global Template,_,Router,ReactiveVar,distUR */
 
 Template.dashboardMenu.helpers({
     routes: function() {

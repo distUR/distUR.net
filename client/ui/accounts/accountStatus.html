@@ -29,10 +29,12 @@
                                 <td>{{accountData.email}}</td>
                             </tr>
                         {{/if}}
-                        {{#if accountData.quotaInfo}}
+                        {{#if quotaInfo}}
                             <tr>
                                 <th>Quota info:</th>
-                                <td>{{accountData.quotaInfo.freeMB}} of {{accountData.quotaInfo.availableMB}} MBytes free</td>
+                                <td><strong>{{quotaInfo.freeMB}}</strong> of <strong>{{quotaInfo.availableMB}}</strong>
+                                    MBytes free
+                                </td>
                             </tr>
                         {{/if}}
                         {{#if link}}
@@ -45,6 +47,15 @@
                         {{/if}}
                         </tbody>
                     </table>
+                    <div style="text-align: right">
+                        {{#if canDisconnect}}
+                            <button class="details btn btn-sm btn-danger"><i class="fa fa-fw fa-close"></i> Disconnect</button>
+                        {{/if}}
+                        {{#if canSignOut}}
+                            <button class="details btn btn-sm btn-warning">Sign out</button>
+                        {{/if}}
+                        <button class="details btn btn-sm btn-primary"><i class="fa fa-fw {{icon}}"></i> Details</button>
+                    </div>
                 {{else}}
                     {{#if $.Meteor.userId}}
                         <div class="alert alert-warning">

@@ -1,6 +1,6 @@
 "use strict";
 
-/* global Template,_,Router */
+/* global Template,_,Router,distUR */
 
 Template.dashboardHeading.helpers({
     title: function() {

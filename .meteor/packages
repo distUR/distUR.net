@@ -19,3 +19,5 @@ reactive-var
 mvrx:bluebird
 less
 http
+aldeed:collection2
+momentjs:moment
