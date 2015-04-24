@@ -29,6 +29,12 @@
                                 <td>{{accountData.email}}</td>
                             </tr>
                         {{/if}}
+                        {{#if accountData.quotaInfo}}
+                            <tr>
+                                <th>Quota info:</th>
+                                <td>{{accountData.quotaInfo.freeMB}} of {{accountData.quotaInfo.availableMB}} MBytes free</td>
+                            </tr>
+                        {{/if}}
                         {{#if link}}
                             <tr>
                                 <th>Profile:</th>
