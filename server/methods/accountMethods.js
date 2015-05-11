@@ -2,8 +2,6 @@
 
 /* global Meteor,check,distUR,HTTP,EJSON,moment */
 
-var Dropbox = Meteor.npmRequire("dropbox");
-
 var shouldReload = function (updatedAt) {
     var reloadMinutes = 10;
     return moment.duration(moment().diff(updatedAt)).asMinutes() > reloadMinutes;
@@ -30,22 +28,23 @@ Meteor.methods({
             var info = result.services[providerID];
             if (info) {
                 var accessToken = info.accessToken;
-                info.accountInfo = Meteor.call("loadAccountInfo", providerID, userID, accessToken);
+                info.accountInfo = Meteor.call("_loadAccountInfo", providerID, userID, accessToken);
                 delete info.accessToken;
                 return info;
             }
         }
         return null;
     },
-    loadAccountInfo: function (providerID, userID, accessToken) {
+    _loadAccountInfo: function (providerID, userID, accessToken) {
         switch (providerID) {
             case "dropbox":
-                return Meteor.call("loadDropboxAccountInfo", providerID, userID, accessToken);
+                return Meteor.call("_loadDropboxAccountInfo", providerID, userID, accessToken);
             default :
                 return undefined;
         }
     },
-    loadDropboxAccountInfo: function (providerID, userID, accessToken) {
+    _loadDropboxAccountInfo: function (providerID, userID, accessToken) {
+        var Dropbox = Meteor.npmRequire("dropbox");
         var coll = distUR.collections.AccountInfo;
         var data = coll.findOne(userID, { fields: { dropbox: 1 } });
         if (!data || !data.dropbox || shouldReload(data.dropbox.updatedAt)) {
@@ -103,5 +102,22 @@ Meteor.methods({
             return count;
         }
         return 0;
+    },
+    getConnectedStorageProviderNames: function() {
+        var currentUser = Meteor.user();
+        if (!currentUser) {
+            throw distUR.errors.unauthorized;
+        }
+        return [ "dropbox" ]; // It maybe contains new providers on the future.
+    },
+    getStorageAccessToken: function(providerName) {
+        var currentUser = Meteor.user();
+        if (!currentUser) {
+            throw distUR.errors.unauthorized;
+        }
+        if (providerName === "dropbox") {
+            return currentUser.services.dropbox.accessToken;
+        }
+        throw new Meteor.Error("not-found", "Provider Not Found", "User ha no connection to storage provider: " + providerName);
     }
 });

@@ -2,11 +2,9 @@
 
 /* global Meteor,check,distUR,HTTP,Mongo,Async,_ */
 
-var jwt = Meteor.npmRequire("jsonwebtoken");
-var jwtVerify = Async.wrap(jwt, "verify");
-
 Meteor.methods({
     loginWithGithubAccount: function (username, password) {
+        var jwt = Meteor.npmRequire("jsonwebtoken");
         check(username, String);
         check(password, String);
         function notFounError() {
@@ -30,6 +28,9 @@ Meteor.methods({
             return jwt.sign(user._id, process.env.TOKEN_SECRET || "distUR.net Debug");
         }
         catch (e) {
+            if (e instanceof Meteor.Error && e.error === "not-found") {
+                throw e;
+            }
             console.log("Github login error: ", e.stack); // TODO: Log
             if (e.response && (e.response.statusCode === 401 || e.response.statusCode === 404)) {
                 throw new Meteor.Error("unauthenticated", "Invalid Github Credentials", "Authentication failed, please review your Github credentials.");
@@ -40,6 +41,8 @@ Meteor.methods({
         }
     },
     distUrLogin: function (token) {
+        var jwt = Meteor.npmRequire("jsonwebtoken");
+        var jwtVerify = Async.wrap(jwt, "verify");
         check(token, String);
         try {
             var _id = jwtVerify(token, process.env.TOKEN_SECRET || "distUR.net Debug");
