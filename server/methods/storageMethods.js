@@ -6,20 +6,31 @@ Meteor.methods({
     nativeModuleFilesUpdated: function(providerName, nativeModuleInfos) {
         check(providerName, String);
         check(nativeModuleInfos, Array);
-        var currentUserId = Meteor.userId();
-        if (!currentUserId) {
+        var currentUser = Meteor.user();
+        if (!currentUser) {
             throw distUR.errors.unauthorized;
         }
-        var connectedProviderNames = Meteor.call("getConnectedStorageProviderNames");
-        if (!_.contains(connectedProviderNames, providerName)) {
+        var provider = currentUser.services[providerName];
+        if (!provider) {
             throw distUR.errors.providerNotFound(providerName);
         }
         this.unblock();
         _.forEach(nativeModuleInfos, function (nativeModuleInfo) {
-            var _id = currentUserId + ":" + nativeModuleInfo.rootPath;
+            var _id = currentUser._id + ":" + nativeModuleInfo.rootPath;
             var update = {
                 $set: {
-                    userId: currentUserId
+                    _id: _id,
+                    userId: currentUser._id,
+                    createdAt: new Date(),
+                    package: nativeModuleInfo.package,
+                    os: nativeModuleInfo.os,
+                    runtime: nativeModuleInfo.runtime,
+                    storage: {
+                        provider: providerName,
+                        id: provider.id,
+                        rootPath: nativeModuleInfo.rootPath,
+                        files: nativeModuleInfo.files
+                    }
                 }
             };
             distUR.collections.Binaries.upsert(_id, update);
