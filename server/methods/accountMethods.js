@@ -118,6 +118,6 @@ Meteor.methods({
         if (providerName === "dropbox") {
             return currentUser.services.dropbox.accessToken;
         }
-        throw new Meteor.Error("not-found", "Provider Not Found", "User ha no connection to storage provider: " + providerName);
+        throw distUR.errors.providerNotFound(providerName);
     }
 });
